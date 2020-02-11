@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".UpdateHomeActivity">
+
+    <EditText
+        android:id="@+id/et_home_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/home_update_hint"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/bt_home_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/home_update_btn"
+        android:textColor="@color/buttonLabel"/>
+</LinearLayout>

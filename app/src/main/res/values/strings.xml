@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Keep Fit</string>
+    <string name="hint_goal_name">Enter a Goal Name</string>
+    <string name="hint_goal_target">Enter a Target Value</string>
+    <string name="error_no_value">Invalid value(s) entered!</string>
+    <string name="save_goal">Save Goal</string>
+    <string name="goal_ib_con_desc">Hamburger for goal settings</string>
+    <string name="home_update_hint">Enter the number of steps to be added</string>
+    <string name="home_update_btn">Add Steps</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".NewGoalActivity">
+    <EditText
+        android:id="@+id/et_new_goal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_goal_name"
+        android:textSize="18sp"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"/>
+
+    <EditText
+        android:id="@+id/et_new_goal_target"
+        android:inputType="number"
+        android:hint="@string/hint_goal_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"/>
+
+    <Button
+        android:id="@+id/bt_new_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/save_goal"
+        android:textColor="@color/buttonLabel"/>
+
+
+</LinearLayout>
