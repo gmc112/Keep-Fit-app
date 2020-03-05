@@ -59,9 +59,9 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
 
         if (goals != null){
             if (position % 2 == 0){
-                holder.setBackgroundColor(ContextCompat.getColor(context, R.color.goalItem1));
+                holder.setBackgroundColor(ContextCompat.getColor(context, R.color.recyclerItem1));
             } else {
-                holder.setBackgroundColor(ContextCompat.getColor(context, R.color.goalItem2));
+                holder.setBackgroundColor(ContextCompat.getColor(context, R.color.recyclerItem2));
             }
             Goal current = goals.get(position);
             String msg = current.getName()+ " "+ current.getTarget();

@@ -1,4 +1,4 @@
-package com.example.goals.goal;
+package com.example.goals.history;
 
 import android.content.Context;
 
@@ -8,40 +8,39 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Goal.class}, version = 1, exportSchema = false)
-public abstract class GoalRoomDatabase extends RoomDatabase {
+
+@Database(entities = {History.class}, version = 1, exportSchema = false)
+public abstract class HistoryRoomDatabase extends RoomDatabase {
 
     private static RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+        public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             databaseWriteExecutor.execute(
                     () -> {
-                        GoalDAO dao = instance.goalDAO();
-                        Goal goal = new Goal("Default", 10000);
-                        dao.insert(goal);
+                        HistoryDAO dao = instance.historyDAO(); // ToDo: maybe add default
                     });
         }
     };
 
-    public abstract GoalDAO goalDAO();
+    public abstract HistoryDAO historyDAO();
+    private static volatile HistoryRoomDatabase instance;
 
-    private static volatile GoalRoomDatabase instance;
     private static final int NUMBER_OF_THREADS = 4;
 
-    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static GoalRoomDatabase getDatabase(final Context context) {
-        if (instance == null) {
-            synchronized (GoalRoomDatabase.class) {
+    static HistoryRoomDatabase getDatabase(final Context context){
+        if (instance == null){
+            synchronized (HistoryRoomDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                             context.getApplicationContext(),
-                            GoalRoomDatabase.class,
-                            "goal_database")
+                            HistoryRoomDatabase.class,
+                            "history_database")
                             .addCallback(roomDatabaseCallback)
                             .build();
                 }
@@ -49,6 +48,4 @@ public abstract class GoalRoomDatabase extends RoomDatabase {
         }
         return instance;
     }
-
-
 }

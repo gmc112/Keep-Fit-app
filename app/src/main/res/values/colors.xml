@@ -6,6 +6,6 @@
     <color name="buttonLabel">#d3d3d3</color>
     <color name="progress">#E91E63</color>
     <color name="progressBg">#659B91</color>
-    <color name="goalItem1">#ddd</color>
-    <color name="goalItem2">#aaa</color>
+    <color name="recyclerItem1">#ddd</color>
+    <color name="recyclerItem2">#aaa</color>
 </resources>
