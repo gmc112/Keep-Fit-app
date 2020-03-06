@@ -21,7 +21,7 @@ public abstract class GoalRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(
                     () -> {
                         GoalDAO dao = instance.goalDAO();
-                        Goal goal = new Goal("Default", 10000);
+                        Goal goal = new Goal(1583385277578L, "Default", 10000 );
                         dao.insert(goal);
                     });
         }

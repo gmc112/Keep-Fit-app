@@ -17,11 +17,16 @@ public class HistoryViewModel extends AndroidViewModel {
 //        historyBetween = repository.getHistoryBetween();      ToDo: do this
     }
 
-    void insert(History history){
+    public void insert(History history){
         repository.insert(history);
     }
 
-    LiveData<List<History>> getAllHistories(){
+    public void update(History history) {
+        repository.update(history);
+    }
+    public LiveData<List<History>> getAllHistories(){
         return repository.getAllHistories();
     }
+
 }
+

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.goals.goal.Goal;
 import com.example.goals.goal.GoalRoomDatabase;
 
 import java.util.List;
@@ -17,8 +18,12 @@ public class HistoryRepository {
         historyDAO = db.historyDAO();
 //        historyBetween = historyDAO.getHistoryByDate()
         histories = historyDAO.getAllHistories();
+
     }
 
+    void update(final History history){
+        HistoryRoomDatabase.databaseWriteExecutor.execute(()->historyDAO.updateHistory(history));
+    }
     LiveData<History> getHistoryBetween() {
         return historyBetween;
     }
@@ -27,7 +32,7 @@ public class HistoryRepository {
         return histories;
     }
     void insert(final History history){
-        GoalRoomDatabase.databaseWriteExecutor.execute(()-> historyDAO.insertHistory(history));
+        HistoryRoomDatabase.databaseWriteExecutor.execute(()-> historyDAO.insertHistory(history));
     }
 
 }

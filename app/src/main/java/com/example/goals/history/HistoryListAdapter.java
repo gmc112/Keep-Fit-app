@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import com.example.goals.R;
 import com.example.goals.goal.Goal;
 
+import java.util.Date;
 import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder> {
@@ -40,7 +41,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     private final Context context;
 
-    HistoryListAdapter (Context context) {
+    public HistoryListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -61,9 +62,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
                 holder.setBackgroundColor(ContextCompat.getColor(context, R.color.recyclerItem2));
             }
             History current = histories.get(position);
-            Goal goal = current.getGoal();
+
             String msg = "Date: "+ current.getDate() + "\n"
-                    + current.getSteps() + " / " + goal.getTarget();
+                    + current.getSteps() + "\n" ;
             holder.setText(msg);
         }
     }
@@ -80,6 +81,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         notifyDataSetChanged();
     }
 
-
-
+    public List<History> getHistories(){
+        return histories;       // Todo deep copy
+    }
 }

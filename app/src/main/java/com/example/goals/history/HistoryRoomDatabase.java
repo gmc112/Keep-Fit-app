@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
+import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,6 +23,7 @@ public abstract class HistoryRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(
                     () -> {
                         HistoryDAO dao = instance.historyDAO(); // ToDo: maybe add default
+                        History history = new History(Calendar.getInstance().getTime(), 0, 1583385277578L);
                     });
         }
     };

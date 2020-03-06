@@ -7,4 +7,6 @@
     <string name="goal_ib_con_desc">Hamburger for goal settings</string>
     <string name="home_update_hint">Enter the number of steps to be added</string>
     <string name="home_update_btn">Add Steps</string>
+    <string name="item_settings">Settings</string>
+    <string name="general_category">General</string>
 </resources>

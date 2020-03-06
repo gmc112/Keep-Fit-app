@@ -2,16 +2,20 @@ package com.example.goals.history;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.goals.Utils.Converters;
-import com.example.goals.goal.Goal;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity(tableName = "history_table")
 public class History {
+
+
     @PrimaryKey
     @NonNull
     @TypeConverters(Converters.class)
@@ -20,36 +24,25 @@ public class History {
     @NonNull
     private int steps;
 
+
+
     @NonNull
-    private String name;
-
-    @NonNull
-    private int target;
+    private long goalId;
 
 
-    public History(Date date, int steps, String name, int target){
+    public History(Date date, int steps, long goalId){
+        this.date = date;
+        this.steps = steps;
+        this.goalId = goalId;
+    }
+
+    @Ignore
+    public History(Date date, long goalId){
         this.date = date;
         this.steps = 0;
-        this.name = name;
-        this.target = target;
+        this.goalId = goalId;
     }
 
-    public History(Date date, Goal goal){
-        this.date = date;
-        this.steps = 0;
-        this.name = goal.getName();
-        this.target = goal.getTarget();
-    }
-
-    @NonNull
-    public Goal getGoal() {
-        return new Goal(name, target);
-    }
-
-    public void setGoal(@NonNull Goal goal) {
-        this.name = goal.getName();
-        this.target = goal.getTarget();
-    }
 
 
     public int getSteps() {
@@ -60,17 +53,42 @@ public class History {
         this.steps = steps;
     }
 
-    @NonNull
     public Date getDate() {
         return date;
     }
 
-    @NonNull
-    public String getName() {
-        return name;
+    public void setDate(@NonNull Date date) {
+        this.date = date;
     }
 
-    public int getTarget() {
-        return target;
+    public long getGoalId() {
+        return goalId;
     }
+
+    public void setGoalId(long goalId) {
+        this.goalId = goalId;
+    }
+    @Override
+    public boolean equals(Object object){
+        if (object instanceof History){
+            History hist = (History) object;
+            LocalDate localDate = date
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            LocalDate localDateComp = hist.getDate()
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            if (localDate.getDayOfYear() == localDateComp.getDayOfYear()){
+                if(localDate.getYear() == localDateComp.getYear()){
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
 }

@@ -18,6 +18,13 @@
         </activity>
         <activity android:name=".NewGoalActivity" />
         <activity android:name=".UpdateHomeActivity" />
+        <activity android:name=".ActiveDateActivity" />
+        <activity android:name=".PreferencesActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
