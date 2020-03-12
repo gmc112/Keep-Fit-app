@@ -1,6 +1,7 @@
 package com.example.goals.goal;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -8,26 +9,32 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Goal.class}, version = 1, exportSchema = false)
+@Database(entities = {Goal.class, History.class}, version = 1, exportSchema = false)
 public abstract class GoalRoomDatabase extends RoomDatabase {
 
-    private static RoomDatabase.Callback roomDatabaseCallback = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback onOpenCallback = new RoomDatabase.Callback() {
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            new populateDefaultAsync(instance).execute();
+        }
+    };
+
+    private static RoomDatabase.Callback onCreateCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
-            databaseWriteExecutor.execute(
-                    () -> {
-                        GoalDAO dao = instance.goalDAO();
-                        Goal goal = new Goal(1583385277578L, "Default", 10000 );
-                        dao.insert(goal);
-                    });
+            new populateDefaultAsync(instance).execute();
         }
     };
 
     public abstract GoalDAO goalDAO();
+
+    public abstract HistoryDAO historyDAO();
 
     private static volatile GoalRoomDatabase instance;
     private static final int NUMBER_OF_THREADS = 4;
@@ -42,7 +49,9 @@ public abstract class GoalRoomDatabase extends RoomDatabase {
                             context.getApplicationContext(),
                             GoalRoomDatabase.class,
                             "goal_database")
-                            .addCallback(roomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
+                            .addCallback(onCreateCallback)
+                            .addCallback(onOpenCallback)
                             .build();
                 }
             }
@@ -51,4 +60,25 @@ public abstract class GoalRoomDatabase extends RoomDatabase {
     }
 
 
+    private static class populateDefaultAsync extends AsyncTask<Void, Void, Void> {
+        private final GoalDAO dao;
+        private final HistoryDAO hDao;
+        public populateDefaultAsync(GoalRoomDatabase instance) {
+            dao = instance.goalDAO();
+            hDao = instance.historyDAO();
+        }
+
+        @Override
+        protected Void doInBackground(final Void... voids){
+            Goal goal = new Goal("Default", 5000, true);
+            if(dao.getAnyGoal().length < 1){
+                dao.insert(goal);
+            }
+            if(hDao.getAnyHistory().length < 1){
+                History history = new History(Calendar.getInstance().getTime(), goal);
+                hDao.insert(history);
+            }
+            return null;
+        }
+    }
 }

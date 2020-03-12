@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation.xml"
     app:startDestination="@+id/navigation_home">
+
     <fragment
         android:id="@+id/navigation_goals"
         android:name="com.example.goals.goal.GoalFragment"

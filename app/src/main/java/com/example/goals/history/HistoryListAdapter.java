@@ -12,26 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.goals.R;
-import com.example.goals.goal.Goal;
+import com.example.goals.goal.History;
 
-import java.util.Date;
 import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder> {
 
     class HistoryViewHolder extends ViewHolder{
-        private final TextView textView;
-        public HistoryViewHolder(@NonNull View itemView) {
+        private final TextView tvDate;
+        private final TextView tvTarget;
+
+        private HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv_history_item);
+            tvDate = itemView.findViewById(R.id.tv_history_date);
+            tvTarget = itemView.findViewById(R.id.tv_history_target);
         }
 
         void setBackgroundColor(int color){
-            textView.setBackgroundColor(color);
+            tvDate.setBackgroundColor(color);
+            tvTarget.setBackgroundColor(color);
         }
 
-        void setText(String msg){
-            textView.setText(msg);
+        void setText(String date, String target){
+            tvDate.setText(date);
+            tvTarget.setText(target);
         }
     }
 
@@ -41,7 +45,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     private final Context context;
 
-    public HistoryListAdapter(Context context) {
+    HistoryListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -62,10 +66,13 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
                 holder.setBackgroundColor(ContextCompat.getColor(context, R.color.recyclerItem2));
             }
             History current = histories.get(position);
-
-            String msg = "Date: "+ current.getDate() + "\n"
-                    + current.getSteps() + "\n" ;
-            holder.setText(msg);
+            double steps = current.getSteps();
+            double goal = current.getTarget();
+            double progress = (steps/goal)*100;
+            int val = (int) Math.round(progress);
+            holder.setText(
+                    "Date: " + current.getDate()+ "  ",
+                    current.getName() +": " + current.getSteps() + "/" + current.getTarget()+ "  "+ val +"%");
         }
     }
 

@@ -8,6 +8,8 @@ import androidx.preference.DialogPreference;
 
 import com.example.goals.R;
 
+import java.util.Calendar;
+
 
 public class DatePreference extends DialogPreference {
     private long date;
@@ -52,7 +54,7 @@ public class DatePreference extends DialogPreference {
     }
     @Override
     protected void onSetInitialValue(Object defaultValue){
-        long val = getPersistedLong(1583385277578L);// ToDo don't hard code this use like (long) defaultValue
+        long val = getPersistedLong(Calendar.getInstance().getTimeInMillis());
         setDate(val);
     }
 

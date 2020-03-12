@@ -19,7 +19,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         DialogFragment dialogFragment = null;
 
         if (preference instanceof DatePreference) {
-            dialogFragment = DatePreferenceDialogFragmentCompat.newInstance(preference.getKey());
+            dialogFragment = DateDialogFragmentCompat.newInstance(preference.getKey());
+        } else if (preference instanceof DeleteHistoryPreference){
+            dialogFragment =DeleteHistoryDialogFragmentCompat.newInstance(preference.getKey());
         }
         if (dialogFragment != null){
             dialogFragment.setTargetFragment(this, 0);

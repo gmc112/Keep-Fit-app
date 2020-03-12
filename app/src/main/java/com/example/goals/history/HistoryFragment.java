@@ -30,8 +30,8 @@ public class HistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.re_history);
         Context context = view.getContext();
-        final HistoryListAdapter adapter = new HistoryListAdapter(context);
 
+        final HistoryListAdapter adapter = new HistoryListAdapter(context);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 

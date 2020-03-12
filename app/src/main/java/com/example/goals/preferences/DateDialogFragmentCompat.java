@@ -1,31 +1,24 @@
 package com.example.goals.preferences;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
 import androidx.preference.DialogPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceDataStore;
 import androidx.preference.PreferenceDialogFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import com.example.goals.R;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
-public class DatePreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat {
+public class DateDialogFragmentCompat extends PreferenceDialogFragmentCompat {
 
     private DatePicker datePicker;
 
-    public static DatePreferenceDialogFragmentCompat newInstance(String key){
-        final DatePreferenceDialogFragmentCompat fragment = new DatePreferenceDialogFragmentCompat();
+    public static DateDialogFragmentCompat newInstance(String key){
+        final DateDialogFragmentCompat fragment = new DateDialogFragmentCompat();
         final Bundle bundle = new Bundle(1);
         bundle.putString(ARG_KEY, key);
         fragment.setArguments(bundle);
@@ -47,7 +40,7 @@ public class DatePreferenceDialogFragmentCompat extends PreferenceDialogFragment
             date = ((DatePreference) preference).getDate();
         }
         if(date != null) {
-            long currentTime = Calendar.getInstance().getTime().getTime();
+            long currentTime = Calendar.getInstance().getTimeInMillis();
             datePicker.setMaxDate(currentTime);
 
         }

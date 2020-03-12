@@ -17,4 +17,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="GoalItemTitle">
+        <item name = "android:textSize">32sp</item>
+        <item name = "android:textStyle">bold</item>
+    </style>
+    <style name="GoalItemValue">
+        <item name = "android:textSize">20sp</item>
+    </style>
 </resources>

@@ -1,24 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/ib_goal_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu_black_24dp"
-
-        android:paddingTop="53.75dp"
-        android:paddingBottom="53.75dp"
-        android:contentDescription="@string/goal_ib_con_desc" />
-
-    <TextView
-        android:id="@+id/tv_goal_item"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_goal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="?attr/actionBarSize" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_goal_item_title"
+                style="@style/GoalItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="start|top"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/tv_goal_item_value"
+                style="@style/GoalItemValue"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="start|top"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_goal_item_title" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_goal_edit"
+            android:layout_width="48dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="250dp"
+            android:contentDescription="@string/edit_button_desc"
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ib_goal_active"
+            android:layout_width="48dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="350dp"
+            android:contentDescription="@string/active_button_desc"
+            android:tint="@color/recyclerActive"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_check_box_black_24dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

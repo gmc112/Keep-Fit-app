@@ -15,14 +15,31 @@
             android:key="notifications"
             app:title="Enable Notifications"
             app:iconSpaceReserved="false"/>
-        <SwitchPreferenceCompat
-            android:key="edit"
-            app:title="Allow Editing of Goals"/>
+
         <com.example.goals.preferences.DatePreference
             android:key="date"
             android:title="Select Date"
             android:defaultValue="1583385277578"
             app:iconSpaceReserved="false"/>
 
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="data_category"
+        app:title="Manage Data"
+        app:iconSpaceReserved="false">
+        <com.example.goals.preferences.DeleteHistoryPreference
+            android:key="delete"
+            android:title="Clear History"
+            android:dialogMessage="@string/pref_delete_msg"
+            android:positiveButtonText="Yes"
+            android:negativeButtonText="No"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreferenceCompat
+            android:key="edit"
+            android:title="Enable Goal Editing"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

@@ -2,39 +2,34 @@ package com.example.goals.goal;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
-
-import com.example.goals.history.HistoryGoals;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
-public abstract class GoalDAO {
-
+public interface GoalDAO {
     @Insert
-    abstract void insert(Goal goal);
+    void insert(Goal goal);
 
-    @Transaction
-    void insertAndDelete(Goal goal){
-        delete(goal.getName());
-        insert(goal);
-    }
-
-    @Query("DELETE from goal_table where name = :name")
-    abstract void delete(String name);
+    @Update
+    void update(Goal goal);
 
     @Query("DELETE from goal_table")
-    abstract void deleteAll();
+    void deleteAll();
 
-    @Query("SELECT * from goal_table")
-    abstract LiveData<List<Goal>> getAllGoals();
+    @Delete
+    void delete(Goal goal);
 
+    @Query("SELECT * from goal_table ORDER BY active desc")
+    LiveData<List<Goal>> getAllGoals();
 
-    @Transaction @Query("Select * from goal_table")
-    abstract List<HistoryGoals> getHistoryGoals();       //TODo make live data
+    @Query("SELECT * from goal_table LIMIT 1")
+    Goal[] getAnyGoal();
 
-    @Query("Select * from goal_table where id= :id")
-    abstract LiveData<Goal> getGoalById(long id);
+    @Query("SELECT * from goal_table ORDER BY active desc LIMIT 1")
+    Goal getActiveGoal();
 }
