@@ -70,6 +70,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
             double goal = current.getTarget();
             double progress = (steps/goal)*100;
             int val = (int) Math.round(progress);
+            if(progress>= 100){
+                holder.setBackgroundColor(ContextCompat.getColor(context, R.color.recyclerActive));
+            }
             holder.setText(
                     "Date: " + current.getDate()+ "  ",
                     current.getName() +": " + current.getSteps() + "/" + current.getTarget()+ "  "+ val +"%");

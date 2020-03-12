@@ -1,5 +1,6 @@
 package com.example.goals;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -7,6 +8,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.goals.preferences.DatePreference;
 import com.example.goals.preferences.PreferencesFragment;
 
 public class PreferencesActivity extends AppCompatActivity {

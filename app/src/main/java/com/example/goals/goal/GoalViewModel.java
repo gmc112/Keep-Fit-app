@@ -52,6 +52,9 @@ public class GoalViewModel extends AndroidViewModel {
         return false;
     }
 
+    public void insertSimple(Goal goal){
+        repository.insert(goal);
+    }
     public void toggleGoal(Goal goal){
         List<Goal> goals = getAllGoals().getValue();
         if(goals!= null){

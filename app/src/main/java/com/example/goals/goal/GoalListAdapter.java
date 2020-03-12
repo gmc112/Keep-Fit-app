@@ -131,13 +131,32 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
         if(target==0){
             target = current.getTarget();
         }
-        viewModel.delete(current);
-        viewModel.insert(new Goal(name, target, false));
-        Toast.makeText(
-                context,
-                R.string.goal_update,
-                Toast.LENGTH_LONG
-        ).show();
+        if(name.equals(current.getName())){
+            current.setTarget(target);
+            viewModel.update(current);
+            Toast.makeText(
+                    context,
+                    R.string.goal_update,
+                    Toast.LENGTH_LONG
+            ).show();
+        }else{
+
+            if(!viewModel.insert(new Goal(name, target, false))){
+                Toast.makeText(
+                        context,
+                        R.string.error_goal_exists,
+                        Toast.LENGTH_LONG
+                ).show();
+            } else{
+                viewModel.delete(current);
+                Toast.makeText(
+                        context,
+                        R.string.goal_update,
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        }
+
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){

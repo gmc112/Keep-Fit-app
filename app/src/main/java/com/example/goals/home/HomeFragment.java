@@ -296,7 +296,19 @@ public class HomeFragment extends Fragment {
         TextView textViewProgress = view.findViewById(R.id.tv_home_display);
         String msg = "Current: " + (int) Math.round(steps) + "\n\nTarget: " + goal.getTarget();
         textViewProgress.setText(msg);
+        TextView textViewDateMode = view.findViewById(R.id.tv_home_date_mode);
+        String dateMode;
+        if(mode){
+            dateMode = "Historical";
+        } else {
+            dateMode = "Current";
+        }
+        textViewDateMode.setText(dateMode);
 
+        DMY dmy = homeViewModel.getDate();
+        String dateString = dmy.getDay() + "/" + dmy.getMonth() + "/"+ dmy.getYear();
+        TextView textViewDate = view.findViewById(R.id.tv_home_date);
+        textViewDate.setText(dateString);
     }
 
 

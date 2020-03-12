@@ -70,6 +70,30 @@
         app:layout_constraintVertical_bias="0.573"
         tools:text="@tools:sample/full_names" />
 
+    <TextView
+        android:id="@+id/tv_home_date_mode"
+        style="@style/GoalItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_home"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/tv_home_date"
+        style="@style/GoalItemValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_date_mode"
+        app:layout_constraintVertical_bias="0.265"
+        tools:text="@tools:sample/date/ddmmyy" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_home"
         android:layout_width="wrap_content"

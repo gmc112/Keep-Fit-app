@@ -2,7 +2,7 @@
     <string name="app_name">Keep Fit</string>
     <string name="hint_goal_name">Enter a Goal Name</string>
     <string name="hint_goal_target">Enter a Target Value</string>
-    <string name="error_no_value">Invalid value(s) entered!</string>
+    <string name="error_no_value">No Value(s) Entered!</string>
     <string name="error_goal_exists">A Goal already exists with this name!</string>
     <string name="save_goal">Save Goal</string>
     <string name="goal_ib_con_desc">Hamburger for goal settings</string>

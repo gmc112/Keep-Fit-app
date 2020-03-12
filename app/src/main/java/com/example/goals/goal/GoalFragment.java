@@ -134,12 +134,18 @@ public class GoalFragment extends Fragment {
 
             }
             return;
+        } else {
+            if(requestCode == NEW_GOAL_ACTIVITY_REQUEST_CODE){
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        R.string.error_no_value,
+                        Toast.LENGTH_LONG
+                ).show();
+
+
+            }
         }
-        Toast.makeText(
-                getActivity().getApplicationContext(),
-                R.string.error_no_value,
-                Toast.LENGTH_LONG
-        ).show();
+
 
     }
 

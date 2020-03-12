@@ -29,9 +29,13 @@ public class EditGoalActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(name) && TextUtils.isEmpty(target)){ // ToDo: Check for duplicate names
                 setResult(RESULT_CANCELED, reply);
             } else {
-
                 reply.putExtra("name", name.toString());
-                reply.putExtra("target", Integer.parseInt(target.toString()));
+                try {
+                    int num = Integer.parseInt(target.toString());
+                    reply.putExtra("target", num);
+                }catch (NumberFormatException e){
+                    reply.putExtra("target", 0);
+                }
                 int pos = getIntent().getIntExtra("position", -1);
                 reply.putExtra("position", pos);
                 setResult(RESULT_OK, reply);

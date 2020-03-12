@@ -32,9 +32,9 @@ public class NewGoalActivity extends AppCompatActivity {
             Editable name = editTextName.getText();
             Editable target = editTextTarget.getText();
             if (TextUtils.isEmpty(name) || TextUtils.isEmpty(target)){ // ToDo: Check for duplicate names
+                reply.putExtra("error", true);
                 setResult(RESULT_CANCELED, reply);
             } else {
-
                 reply.putExtra("name", name.toString());
                 reply.putExtra("target", Integer.parseInt(target.toString()));
                 setResult(RESULT_OK, reply);

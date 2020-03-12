@@ -1,17 +1,21 @@
 package com.example.goals.preferences;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
 import androidx.preference.DialogPreference;
 import androidx.preference.PreferenceDialogFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import com.example.goals.R;
+import com.example.goals.goal.DMY;
 
 public class DateDialogFragmentCompat extends PreferenceDialogFragmentCompat {
 
@@ -25,6 +29,7 @@ public class DateDialogFragmentCompat extends PreferenceDialogFragmentCompat {
         return fragment;
     }
 
+
     @Override
     protected View onCreateDialogView(Context context) {
         return super.onCreateDialogView(context);
@@ -36,6 +41,7 @@ public class DateDialogFragmentCompat extends PreferenceDialogFragmentCompat {
         datePicker = view.findViewById(R.id.dp_pref_dialog);
         Long date = null;
         DialogPreference preference = getPreference();
+
         if(preference instanceof DatePreference) {
             date = ((DatePreference) preference).getDate();
         }
@@ -57,6 +63,9 @@ public class DateDialogFragmentCompat extends PreferenceDialogFragmentCompat {
                 DatePreference datePreference = (DatePreference) preference;
                 datePreference.setDate(date);
             }
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+            DMY dmy = new DMY(new Date(sp.getLong("date", Calendar.getInstance().getTimeInMillis())));
+            preference.setSummary("Date: " + dmy);
         }
     }
 }
